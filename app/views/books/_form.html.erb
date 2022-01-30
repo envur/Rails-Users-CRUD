@@ -1,0 +1,24 @@
+<%= form_with model: [@user, book] do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% book.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :author %><br>
+    <%= form.text_field :author %>
+    <% book.errors.full_messages_for(:author).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, ["À ler", "Lendo", "Lido"], selected: 'À ler' %>
+  </div>
+  <div>
+      <%= form.submit %>
+  </div>
+<% end %>

@@ -1,5 +1,7 @@
 <h1>Usuário n° <%= @user.id %></h1>
 
+<span>Você já leu <%= @user.books.read_amount %> livros!</span>
+
 <ul>
     <li>
         <%= @user.name %>
@@ -10,9 +12,16 @@
     <li>
         <%= @user.phone %>
     </li>
+    <li>
+        <%= @user.role %>
+    </li>
 </ul>
 
+<h2>Livros:</h2>
+<% @user.books.each do |book| %>
+    <%= render "books/book", book: book %>
+<% end %>
+<h2><%= link_to "Adicionar Livro", new_user_book_path(@user) %></h2>
+
 <%= link_to "Editar", edit_user_path(@user) %>
-<li><%= link_to "Excluir", user_path(@user),
-method: :delete,
-data: { confirm: "Você realmente deseja deletar esse usuário?" } %></li>
+<li><%= link_to "Excluir", user_path(@user), method: :delete, data: { confirm: "Você realmente deseja deletar esse usuário?" } %></li>
